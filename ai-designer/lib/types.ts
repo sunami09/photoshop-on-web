@@ -1,3 +1,5 @@
+import { Dispatch, RefObject, SetStateAction } from "react";
+
 export type ImageLayer = {
   id: string;
   name: string;
@@ -18,3 +20,9 @@ export type DesignDocument = {
   height: number;
   layers: Layer[];
 };
+
+export interface EditorState {
+  designDocument: DesignDocument | null;
+  setDesignDocument: Dispatch<SetStateAction<DesignDocument | null>>;
+  canvasRef: RefObject<HTMLCanvasElement | null>;
+}
