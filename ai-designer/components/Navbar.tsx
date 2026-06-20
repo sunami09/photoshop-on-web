@@ -1,7 +1,7 @@
 import { EditorState } from "@/lib/types";
 import { exportPng, handleImageUpload } from "./editor-actions";
 
-export function Navbar({ setDesignDocument, canvasRef, designDocument }: EditorState) {
+export function Navbar({ setDesignDocument, canvasRef, designDocument, selectedLayerId, setSelectedLayerId }: EditorState) {
     return (
         <div className="mb-4 flex gap-3">
             <label className="cursor-pointer rounded bg-white px-4 py-2 text-black">
@@ -9,7 +9,7 @@ export function Navbar({ setDesignDocument, canvasRef, designDocument }: EditorS
                 <input
                 type="file"
                 accept="image/*"
-                onChange={(event) => handleImageUpload(event, setDesignDocument, canvasRef)}
+                onChange={(event) => handleImageUpload(event, designDocument, setDesignDocument, canvasRef, setSelectedLayerId)}
                 className="hidden"
                 />
             </label>

@@ -1,8 +1,13 @@
 import { EditorState } from "@/lib/types";
-import { exportPng, handleImageUpload } from "./editor-actions";
 import { toggleLayerVisibility } from "./editor-utils";
 
-export function Tools({ setDesignDocument, canvasRef, designDocument }: EditorState) {
+export function Tools({
+  setDesignDocument,
+  canvasRef,
+  designDocument,
+  selectedLayerId,
+  setSelectedLayerId,
+}: EditorState) {
     return (
         <aside className="rounded border border-neutral-700 bg-neutral-900 p-4">
                 <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-400">
@@ -16,7 +21,12 @@ export function Tools({ setDesignDocument, canvasRef, designDocument }: EditorSt
                     {designDocument.layers.map((layer) => (
                     <div
                         key={layer.id}
-                        className="rounded border border-neutral-700 bg-neutral-800 p-3"
+                        onClick={() => setSelectedLayerId(layer.id)}
+                        className={`cursor-pointer rounded border p-3 ${
+                            selectedLayerId === layer.id
+                            ? "border-blue-400 bg-blue-950/40"
+                            : "border-neutral-700 bg-neutral-800"
+                        }`}
                     >
                         <div className="flex items-center justify-between gap-2">
                             <div>
